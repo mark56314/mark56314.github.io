@@ -1,1 +1,22 @@
+<h2>Админка</h2>
 
+<input placeholder="Название" id="name">
+<input placeholder="Телефон" id="phone">
+<input placeholder="Telegram" id="tg">
+<input placeholder="2ГИС ссылка" id="map">
+
+<button onclick="save()">Сохранить</button>
+
+<script>
+function save(){
+  let arr = JSON.parse(localStorage.getItem("restaurants")) || [];
+  arr.push({
+    name: name.value,
+    phone: phone.value,
+    tg: tg.value,
+    map: map.value
+  });
+  localStorage.setItem("restaurants", JSON.stringify(arr));
+  alert("Сохранено");
+}
+</script>
