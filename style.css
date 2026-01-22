@@ -1,0 +1,35 @@
+body {
+  background:#f2f2f2;
+  font-family:sans-serif;
+}
+.card {
+  max-width:360px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+}
+.btn, button {
+  display:block;
+  margin:10px 0;
+  padding:14px;
+  background:#000;
+  color:white;
+  text-decoration:none;
+  border-radius:10px;
+}
+.logo {
+  width:120px;
+  margin-bottom:15px;
+}
+.modal {
+  position:fixed;
+  inset:0;
+  background:#fff;
+  display:none;
+}
+.modal div {
+  padding:15px;
+  border-bottom:1px solid #ddd;
+}
