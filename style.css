@@ -1,35 +1,121 @@
+/* ОБЩИЕ СТИЛИ */
 body {
-  background:#f2f2f2;
-  font-family:sans-serif;
+  font-family: 'Arial', sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
+
+/* КАРТОЧКА САЙТА */
 .card {
-  max-width:360px;
-  margin:auto;
-  background:white;
-  padding:20px;
-  border-radius:14px;
-  text-align:center;
+  max-width: 400px;
+  margin: 40px auto;
+  background: white;
+  padding: 25px 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
-.btn, button {
-  display:block;
-  margin:10px 0;
-  padding:14px;
-  background:#000;
-  color:white;
-  text-decoration:none;
-  border-radius:10px;
-}
+
+/* ЛОГОТИП */
 .logo {
-  width:120px;
-  margin-bottom:15px;
+  width: 120px;
+  margin-bottom: 20px;
 }
+
+/* КНОПКИ */
+.btn, button, select {
+  display: block;
+  width: 80%;
+  margin: 12px auto;
+  padding: 15px 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn {
+  background-color: #e53935;
+  color: white;
+}
+
+.btn:hover, button:hover, select:hover {
+  opacity: 0.85;
+}
+
+/* SELECT РЕСТОРАНА */
+#restaurantSelect {
+  background: #fff;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
+
+/* АДМИНКА */
+#restaurantList div {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#restaurantList div button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+input {
+  display: block;
+  width: 90%;
+  margin: 8px auto;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* МОДАЛЬНОЕ ОКНО ВЫБОРА РЕСТОРАНА (если используем) */
 .modal {
-  position:fixed;
-  inset:0;
-  background:#fff;
-  display:none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
+
 .modal div {
-  padding:15px;
-  border-bottom:1px solid #ddd;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal div:hover {
+  background: #f0f0f0;
+}
+
+/* МЕДИА ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ */
+@media screen and (max-width: 450px) {
+  .card {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .btn, button, select {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  input {
+    width: 90%;
+  }
 }
