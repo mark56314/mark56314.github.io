@@ -1,28 +1,30 @@
-let data = JSON.parse(localStorage.getItem("restaurants")) || [];
-let current = localStorage.getItem("current") || 0;
+let current = 0;
 
-function render() {
-  if (!data.length) return;
+// Заполняем список ресторанов
+const select = document.getElementById("restaurantSelect");
+function renderSelect() {
+  select.innerHTML = "";
+  restaurants.forEach((r,i) => {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = r.name;
+    select.appendChild(option);
+  });
+  select.value = current;
+}
+renderSelect();
 
-  const r = data[current];
+// Обновляем кнопки по выбранному ресторану
+function renderButtons() {
+  const r = restaurants[current];
   document.getElementById("routeBtn").href = r.map;
   document.getElementById("callBtn").href = "tel:" + r.phone;
   document.getElementById("tgBtn").href = r.tg;
 }
+renderButtons();
 
-document.getElementById("selectBtn").onclick = () => {
-  const modal = document.getElementById("modal");
-  modal.innerHTML = data.map((r,i) =>
-    `<div onclick="select(${i})">${r.name}</div>`
-  ).join("");
-  modal.style.display = "block";
-};
-
-function select(i){
-  current = i;
-  localStorage.setItem("current", i);
-  document.getElementById("modal").style.display="none";
-  render();
-}
-
-render();
+// Смена ресторана
+select.addEventListener("change", e => {
+  current = e.target.value;
+  renderButtons();
+});
