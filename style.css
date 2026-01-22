@@ -1,182 +1,547 @@
-body {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+/* Шрифты */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
   margin: 0;
   padding: 0;
-  color: #333;
-  background-size: cover;
-  background-attachment: fixed;
+  box-sizing: border-box;
 }
 
-/* Карточка клиента */
-.card {
-  max-width: 420px;
-  margin: 50px auto;
-  background: rgba(255,255,255,0.95);
-  padding: 30px 25px;
-  border-radius: 20px;
+body {
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(
+  135deg,
+  #020617 0%,
+  #020617 25%,
+  #0f172a 50%,
+  #020617 100%
+);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Контейнер */
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 5px rgba(255, 255, 255, 0.5);
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  border: 2px solid #fff;
+  max-width: 420px;
+  width: 100%;
+  backdrop-filter: blur(10px);
 }
 
 /* Логотип */
+.logo-wrapper {
+  margin-bottom: 25px;
+}
+
 .logo {
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
-  border: 4px solid #fff;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  border: 5px solid #ff6b35;
+  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4), 0 0 0 8px rgba(255, 107, 53, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5), 0 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+/* Заголовок */
+h1 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+/* Выбор ресторана */
+.select-wrapper {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff6b35;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+select {
+  width: 100%;
+  padding: 15px 45px 15px 20px;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  border: 3px solid #ff6b35;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fff, #fff5f0);
+  color: #333;
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+select:focus {
+  outline: none;
+  border-color: #ff8c42;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+}
+
+select:hover {
+  background: linear-gradient(145deg, #fff5f0, #ffe8d6);
 }
 
 /* Кнопки */
-.btn, button, select {
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 25px;
+  font-size: 1.1rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Кнопка 2ГИС */
+.btn-map {
+  background: linear-gradient(145deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.btn-map:hover {
+  background: linear-gradient(145deg, #45a049, #3d8b40);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Кнопка звонка */
+.btn-call {
+  background: linear-gradient(145deg, #2196F3, #1976D2);
+  color: white;
+}
+
+.btn-call:hover {
+  background: linear-gradient(145deg, #1976D2, #1565C0);
+  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Кнопка Telegram */
+.btn-telegram {
+  background: linear-gradient(145deg, #0088cc, #0077b5);
+  color: white;
+}
+
+.btn-telegram:hover {
+  background: linear-gradient(145deg, #0077b5, #006699);
+  box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Иконки в кнопках */
+.btn-icon {
+  font-size: 1.4rem;
+}
+
+/* ========== АДМИНКА ========== */
+
+.admin-container {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 30px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+}
+
+.admin-container h1 {
+  margin-bottom: 30px;
+}
+
+/* Форма входа */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form input {
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  border: 3px solid #ddd;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+.btn-login {
+  background: linear-gradient(145deg, #ff6b35, #ff8c42);
+  color: white;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+}
+
+.btn-login:hover {
+  background: linear-gradient(145deg, #ff8c42, #ffb347);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+/* Панель администратора */
+.admin-panel {
+  display: none;
+}
+
+.admin-panel.active {
   display: block;
-  width: 85%;
-  margin: 15px auto;
-  padding: 16px 0;
-  font-size: 20px;
-  font-weight: bold;
+}
+
+.section {
+  margin-bottom: 30px;
+  padding: 25px;
+  background: linear-gradient(145deg, #f8f9fa, #fff);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #ff6b35;
+}
+
+/* Список ресторанов */
+.restaurant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.restaurant-item {
+  background: linear-gradient(145deg, #fff, #fff5f0);
+  border: 2px solid #ffe8d6;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
+  transition: all 0.3s ease;
+}
+
+.restaurant-item:hover {
+  border-color: #ff6b35;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.2);
+}
+
+.restaurant-item h3 {
+  color: #ff6b35;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.restaurant-item p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  word-break: break-all;
+}
+
+.restaurant-item p strong {
+  color: #333;
+}
+
+.restaurant-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-edit, .btn-delete {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit {
+  background: linear-gradient(145deg, #ffc107, #ffb300);
+  color: #333;
+}
+
+.btn-edit:hover {
+  background: linear-gradient(145deg, #ffb300, #ffa000);
+  transform: translateY(-2px);
+}
+
+.btn-delete {
+  background: linear-gradient(145deg, #f44336, #e53935);
+  color: white;
+}
+
+.btn-delete:hover {
+  background: linear-gradient(145deg, #e53935, #d32f2f);
+  transform: translateY(-2px);
+}
+
+/* Форма добавления/редактирования */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+.btn-add, .btn-save {
+  width: 100%;
+  padding: 15px 25px;
+  font-size: 1rem;
+  font-weight: 700;
   border: none;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-decoration: none;
-  color: #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  margin-top: 10px;
 }
-#routeBtn { background: #ff6f61; }
-#callBtn  { background: #4caf50; }
-#tgBtn    { background: #2196f3; }
 
-.btn:hover, button:hover, select:hover {
+.btn-add {
+  background: linear-gradient(145deg, #4CAF50, #45a049);
+  color: white;
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+.btn-add:hover {
+  background: linear-gradient(145deg, #45a049, #3d8b40);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-  opacity: 0.95;
 }
 
-/* Админка */
-#restaurantList div {
-  padding: 12px;
-  margin: 8px 0;
-  background: #fff8e1;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+.btn-save {
+  background: linear-gradient(145deg, #2196F3, #1976D2);
+  color: white;
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
 }
 
-#restaurantList div button {
-  margin-left: 8px;
-  padding: 6px 12px;
-  font-size: 14px;
-  border-radius: 6px;
+.btn-save:hover {
+  background: linear-gradient(145deg, #1976D2, #1565C0);
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  width: 100%;
+  padding: 15px 25px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-#restaurantList div button:hover { transform: translateY(-1px); }
-
-input[type="text"], input[type="password"], input[type="file"] {
-  display: block;
-  width: 90%;
-  margin: 10px auto;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-/* Мобильная адаптивность */
-@media screen and (max-width: 450px) {
-  .card { width: 90%; margin: 20px auto; padding: 20px; }
-  .btn, button, select { width: 90%; font-size: 16px; }
-  input { width: 90%; }
-}  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn {
-  background-color: #e53935;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  background: linear-gradient(145deg, #9e9e9e, #757575);
   color: white;
 }
 
-.btn:hover, button:hover, select:hover {
-  opacity: 0.85;
+.btn-cancel:hover {
+  background: linear-gradient(145deg, #757575, #616161);
+  transform: translateY(-2px);
 }
 
-/* SELECT РЕСТОРАНА */
-#restaurantSelect {
-  background: #fff;
-  border: 1px solid #ccc;
-  font-size: 18px;
-}
-
-/* АДМИНКА */
-#restaurantList div {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+/* Загрузка логотипа */
+.logo-upload {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
-#restaurantList div button {
-  margin-left: 5px;
-  padding: 5px 10px;
-  font-size: 14px;
+.current-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ff6b35;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
 }
 
-input {
-  display: block;
-  width: 90%;
-  margin: 8px auto;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
 }
 
-/* МОДАЛЬНОЕ ОКНО ВЫБОРА РЕСТОРАНА (если используем) */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal div {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 5px 0;
+.file-input-wrapper input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
   cursor: pointer;
-  transition: 0.2s;
+  width: 100%;
+  height: 100%;
 }
 
-.modal div:hover {
-  background: #f0f0f0;
+.file-input-label {
+  display: block;
+  padding: 15px 25px;
+  background: linear-gradient(145deg, #9c27b0, #7b1fa2);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(156, 39, 176, 0.3);
 }
 
-/* МЕДИА ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ */
-@media screen and (max-width: 450px) {
-  .card {
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
+.file-input-wrapper:hover .file-input-label {
+  background: linear-gradient(145deg, #7b1fa2, #6a1b9a);
+  transform: translateY(-2px);
+}
+
+/* Скрытые элементы */
+.hidden {
+  display: none !important;
+}
+
+/* Уведомления */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(145deg, #333, #444);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
   }
 
-  .btn, button, select {
-    width: 90%;
-    font-size: 16px;
+  .container, .admin-container {
+    padding: 30px 20px;
+    border-radius: 25px;
   }
 
-  input {
-    width: 90%;
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    padding: 15px 20px;
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 20px 15px;
+  }
+
+  .restaurant-actions {
+    flex-direction: column;
   }
 }

@@ -1,38 +1,63 @@
-// Инициализация
-const logoEl = document.getElementById("logo");
-const select = document.getElementById("restaurantSelect");
-const routeBtn = document.getElementById("routeBtn");
-const callBtn = document.getElementById("callBtn");
-const tgBtn = document.getElementById("tgBtn");
+// Клиентская логика
+// Функции getRestaurants() и getLogo() доступны из data.js
 
-// Логотип
-logoEl.src = logoSrc;
+document.addEventListener('DOMContentLoaded', function() {
+  var logo = document.getElementById('logo');
+  var restaurantSelect = document.getElementById('restaurant-select');
+  var btnMap = document.getElementById('btn-map');
+  var btnCall = document.getElementById('btn-call');
+  var btnTelegram = document.getElementById('btn-telegram');
 
-// Заполняем список ресторанов
-let current = 0;
-function renderSelect(){
-  select.innerHTML = "";
-  restaurants.forEach((r,i)=>{
-    const option = document.createElement("option");
-    option.value = i;
-    option.textContent = r.name;
-    select.appendChild(option);
+  var restaurants = [];
+  var currentRestaurant = null;
+
+  // Инициализация
+  function init() {
+    // Загрузка логотипа из localStorage или дефолтного
+    logo.src = window.getLogo();
+
+    // Загрузка ресторанов из localStorage или дефолтных
+    restaurants = window.getRestaurants();
+
+    // Заполнение select
+    populateSelect();
+
+    // Установка первого ресторана
+    if (restaurants.length > 0) {
+      currentRestaurant = restaurants[0];
+      updateButtons();
+    }
+  }
+
+  // Заполнение списка ресторанов
+  function populateSelect() {
+    restaurantSelect.innerHTML = '';
+    
+    restaurants.forEach(function(restaurant, index) {
+      var option = document.createElement('option');
+      option.value = index;
+      option.textContent = restaurant.name;
+      restaurantSelect.appendChild(option);
+    });
+  }
+
+  // Обновление кнопок при смене ресторана
+  function updateButtons() {
+    if (!currentRestaurant) return;
+
+    // Обновляем ссылки
+    btnMap.href = currentRestaurant.map;
+    btnCall.href = 'tel:' + currentRestaurant.phone.replace(/[^+\d]/g, '');
+    btnTelegram.href = currentRestaurant.tg;
+  }
+
+  // Обработчик смены ресторана
+  restaurantSelect.addEventListener('change', function() {
+    var index = parseInt(this.value);
+    currentRestaurant = restaurants[index];
+    updateButtons();
   });
-  select.value = current;
-}
-renderSelect();
 
-// Обновляем кнопки
-function renderButtons(){
-  const r = restaurants[current];
-  routeBtn.href = r.map;
-  callBtn.href = "tel:" + r.phone;
-  tgBtn.href = r.tg;
-}
-renderButtons();
-
-// Смена ресторана
-select.addEventListener("change", e=>{
-  current = e.target.value;
-  renderButtons();
+  // Запуск
+  init();
 });
