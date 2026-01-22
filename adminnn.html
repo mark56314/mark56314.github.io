@@ -1,22 +1,25 @@
-<h2>Админка</h2>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Админка</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<h2>Админка ресторанов</h2>
+
+<div id="restaurantList"></div>
+
+<h3>Добавить / Редактировать</h3>
 <input placeholder="Название" id="name">
 <input placeholder="Телефон" id="phone">
 <input placeholder="Telegram" id="tg">
 <input placeholder="2ГИС ссылка" id="map">
+<button id="saveBtn">Сохранить</button>
 
-<button onclick="save()">Сохранить</button>
-
-<script>
-function save(){
-  let arr = JSON.parse(localStorage.getItem("restaurants")) || [];
-  arr.push({
-    name: name.value,
-    phone: phone.value,
-    tg: tg.value,
-    map: map.value
-  });
-  localStorage.setItem("restaurants", JSON.stringify(arr));
-  alert("Сохранено");
-}
-</script>
+<script src="data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
